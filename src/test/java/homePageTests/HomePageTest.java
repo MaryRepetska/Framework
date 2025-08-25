@@ -53,7 +53,7 @@ public class HomePageTest {
 
         driver.quit();
     }
-
+    // 3 завдання
     @Test
     public void checkLogoDisplayed() throws InterruptedException {
 
@@ -103,7 +103,7 @@ public class HomePageTest {
 
         driver.quit();
     }
-
+    // 4 завдання
     @Test
     public void checkHeaderButtons() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
@@ -147,6 +147,18 @@ public class HomePageTest {
         String checkyakOformytyZamovlenia = yakOformytyZamovleniaDisplayed.getText();
 
         Assert.assertTrue(checkyakOformytyZamovlenia.contains("Як оформити замовлення?"));
+
+        driver.quit();
+
+    }
+    @Test
+
+    public void openWindow() {
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://www.moyo.ua/ua/");
 
         driver.quit();
 
