@@ -1,52 +1,64 @@
-package homePageTests;
+package tests;
 
+import basesClass.TestInit;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.PobutovaTechnikaPage;
+
 import static java.lang.Thread.sleep;
 
-public class HomePageTest {
-    WebDriver driver;
+public class HomePageTest extends TestInit {
 
+    public String alloUrl = "https://allo.ua/";
 
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://allo.ua/");
+    @Test
+    public void checkCatalogButton() {
+
+        HomePage homePage = new HomePage(driver);
+
+        openUrl(alloUrl);
+
+        Assert.assertTrue(homePage.catalogButton().isDisplayed());
 
     }
 
     @Test
-    public void checkCatalogButton() throws InterruptedException {
+    public void checkPobytovaTechnikaButton()  {
 
-        sleep(5000);
+        HomePage homePage = new HomePage(driver);
+        PobutovaTechnikaPage pobutovaTechnikaPage = new PobutovaTechnikaPage(driver);
 
-        WebElement catalogButtonLocator = driver.findElement(By.xpath("//div[@class='ct-button']"));
-        Assert.assertTrue(catalogButtonLocator.isDisplayed());
+        openUrl(alloUrl);
 
-    }
+        homePage.catalogButtonClick();
 
-    @Test
-    public void checkPobytovaTechnikaButton() throws InterruptedException {
+        Assert.assertTrue(homePage.pobytovaTechnikaButton().isDisplayed());
 
-        WebElement catalogButtonLocator = driver.findElement(By.xpath("//div[@class='ct-button']"));
-        catalogButtonLocator.click();
+        homePage.pobytovaTechnikaButtonClick();
 
-        sleep(5000);
+        Assert.assertTrue(pobutovaTechnikaPage.expectedFirstItemPobutovaTechnika().isDisplayed());
 
-        WebElement PobytovaTechnikaButton = driver.findElement(By.xpath("(//a[@class='mm__a'])[5]"));
-        PobytovaTechnikaButton.click();
+        String nameFirstItem = pobutovaTechnikaPage.getNameExpectedFirstItem();
+
+        Assert.assertTrue(nameFirstItem.contains("Побутова техніка"));
+
+
+
+
+
+
+
+
 
     }
 
     @Test
     public void checkProductDetailsAfterSearch() throws InterruptedException {
+
+        openUrl(alloUrl);
 
         WebElement alloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
         Assert.assertTrue(alloLogo.isDisplayed(), "Логотип allo відображається!");
@@ -80,6 +92,8 @@ public class HomePageTest {
     @Test
     public void checkPokupciamHeaderButton() throws InterruptedException {
 
+        openUrl(alloUrl);
+
         WebElement PokupciamButton = driver.findElement(By.xpath("//div[@class='mh-button__wrap']"));
         Assert.assertTrue(PokupciamButton.isDisplayed());
 
@@ -106,11 +120,6 @@ public class HomePageTest {
         String checkyakOformytyZamovlenia = yakOformytyZamovleniaTitle.getText();
         Assert.assertTrue(checkyakOformytyZamovlenia.contains("Як оформити замовлення?"));
 
-    }
-
-    @AfterMethod
-    public void close() {
-        driver.quit();
     }
 
 }
