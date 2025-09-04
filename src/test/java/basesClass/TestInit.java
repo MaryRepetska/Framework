@@ -6,19 +6,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-// головний батьківський клас, в якому ми будемо виконувати створення та ініціалізацію нашого вебдрайвера,
-// який буде взаємодіяти з нашим браузером по типу користувача(chromedriver).
-
 public class TestInit {
 
     public WebDriver driver;
 
     @BeforeMethod
-    public void openBrowser() {
+    public void setUpDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
     }
 
     @AfterMethod
@@ -26,7 +22,9 @@ public class TestInit {
         driver.quit();
 
     }
-    public void openUrl(String url){
+
+    public void openUrl(String url) {
         driver.get(url);
+
     }
 }

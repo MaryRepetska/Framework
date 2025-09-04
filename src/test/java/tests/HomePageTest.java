@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import pages.PobutovaTechnikaPage;
+import pages.HouseholdAppliancesPage;
 
 import static java.lang.Thread.sleep;
 
@@ -21,37 +21,29 @@ public class HomePageTest extends TestInit {
 
         openUrl(alloUrl);
 
-        Assert.assertTrue(homePage.catalogButton().isDisplayed());
+        Assert.assertTrue(homePage.displayCatalogButton());
 
     }
 
     @Test
-    public void checkPobytovaTechnikaButton()  {
+    public void shouldNavigateToHouseholdAppliancesPage() {
 
         HomePage homePage = new HomePage(driver);
-        PobutovaTechnikaPage pobutovaTechnikaPage = new PobutovaTechnikaPage(driver);
+        HouseholdAppliancesPage householdAppliancesPage = new HouseholdAppliancesPage(driver);
 
         openUrl(alloUrl);
 
-        homePage.catalogButtonClick();
+        homePage.clickCatalogButton();
 
-        Assert.assertTrue(homePage.pobytovaTechnikaButton().isDisplayed());
+        Assert.assertTrue(homePage.displayhouseholdAppliancesButton());
 
-        homePage.pobytovaTechnikaButtonClick();
+        homePage.clickHouseholdAppliancesButton();
 
-        Assert.assertTrue(pobutovaTechnikaPage.expectedFirstItemPobutovaTechnika().isDisplayed());
+        Assert.assertTrue(householdAppliancesPage.displayExpectedFirstTitleHouseholdAppliances());
 
-        String nameFirstItem = pobutovaTechnikaPage.getNameExpectedFirstItem();
+        String firstTitleText = householdAppliancesPage.getExpectedFirstTitleText();
 
-        Assert.assertTrue(nameFirstItem.contains("Побутова техніка"));
-
-
-
-
-
-
-
-
+        Assert.assertTrue(firstTitleText.contains("Побутова техніка"));
 
     }
 
