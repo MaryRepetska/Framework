@@ -35,11 +35,11 @@ public class HomePageTest extends TestInit {
 
         homePage.clickCatalogButton();
 
-        Assert.assertTrue(homePage.displayhouseholdAppliancesButton());
+        Assert.assertTrue(homePage.displayHouseholdAppliancesButton());
 
         homePage.clickHouseholdAppliancesButton();
 
-        Assert.assertTrue(householdAppliancesPage.displayExpectedFirstTitleHouseholdAppliances());
+        Assert.assertTrue(householdAppliancesPage.isExpectedFirstTitleHouseholdAppliancesDisplayed());
 
         String firstTitleText = householdAppliancesPage.getExpectedFirstTitleText();
 

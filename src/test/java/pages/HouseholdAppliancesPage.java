@@ -20,7 +20,7 @@ public class HouseholdAppliancesPage extends BasePage {
         return expectedFirstTitleHouseholdAppliances().getText();
     }
 
-    public boolean displayExpectedFirstTitleHouseholdAppliances() {
+    public boolean isExpectedFirstTitleHouseholdAppliancesDisplayed() {
         return displayElement(expectedFirstTitleHouseholdAppliances());
     }
 

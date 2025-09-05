@@ -33,7 +33,7 @@ public class HomePage extends BasePage {
         return displayElement(catalogButton());
     }
 
-    public boolean displayhouseholdAppliancesButton() {
+    public boolean displayHouseholdAppliancesButton() {
         return displayElement(householdAppliancesButton());
     }
 

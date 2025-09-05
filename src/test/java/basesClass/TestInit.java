@@ -20,11 +20,10 @@ public class TestInit {
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
-
     }
 
     public void openUrl(String url) {
         driver.get(url);
-
     }
+
 }
