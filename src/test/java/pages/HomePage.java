@@ -52,7 +52,7 @@ public class HomePage extends BasePage {
         return visibilityOfElementByXpath(DELIVERY_PAYMENT_BUTTON);
     }
 
-    public boolean displayAlloLogo() {
+    public boolean alloLogoDisplay() {
         return displayElement(alloLogo());
     }
 
@@ -64,11 +64,11 @@ public class HomePage extends BasePage {
         clickElement(householdAppliancesButton());
     }
 
-    public boolean displayCatalogButton() {
+    public boolean catalogButtonDisplay() {
         return displayElement(catalogButton());
     }
 
-    public boolean displayHouseholdAppliancesButton() {
+    public boolean householdAppliancesButtonDisplay() {
         return displayElement(householdAppliancesButton());
     }
 
@@ -80,7 +80,7 @@ public class HomePage extends BasePage {
         clickElement(searchButton());
     }
 
-    public boolean displayCustomerButton() {
+    public boolean customerButtonDisplay() {
         return displayElement(customerButton());
     }
 
@@ -88,11 +88,11 @@ public class HomePage extends BasePage {
         clickElement(customerButton());
     }
 
-    public boolean displayDropDownMenu() {
+    public boolean dropDownMenuDisplay() {
         return displayElement(dropDownMenu());
     }
 
-    public boolean displayDeliveryPaymentButton() {
+    public boolean deliveryPaymentButtonDisplay() {
         return displayElement(deliveryPaymentButton());
     }
 

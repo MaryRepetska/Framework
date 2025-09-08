@@ -17,7 +17,7 @@ public class HomePageTest extends TestInit {
 
         openUrl(alloUrl);
 
-        Assert.assertTrue(homePage.displayCatalogButton());
+        Assert.assertTrue(homePage.catalogButtonDisplay());
 
     }
 
@@ -31,7 +31,7 @@ public class HomePageTest extends TestInit {
 
         homePage.clickCatalogButton();
 
-        Assert.assertTrue(homePage.displayHouseholdAppliancesButton());
+        Assert.assertTrue(homePage.householdAppliancesButtonDisplay());
 
         homePage.clickHouseholdAppliancesButton();
 
@@ -54,18 +54,18 @@ public class HomePageTest extends TestInit {
 
         String airPods = "AirPods 3";
 
-        Assert.assertTrue(homePage.displayAlloLogo());
+        Assert.assertTrue(homePage.alloLogoDisplay());
 
         homePage.enterValueInSearchInput(airPods);
         homePage.clickSearchButton();
 
-        String actualNameFirstProductCard = searchResultAirPodsPage.getNameFirstAirPodsCard();
-        Assert.assertTrue(actualNameFirstProductCard.contains("AirPods 3"));
+        String expectedNameFirstProductCard = searchResultAirPodsPage.getNameFirstAirPodsCard();
+        Assert.assertTrue(expectedNameFirstProductCard.contains("AirPods 3"));
 
         searchResultAirPodsPage.clickFirstProductCardAirPods();
 
-        String expectedProductTitle = goodsPage.getNameProductHeaderTitle();
-        Assert.assertEquals(actualNameFirstProductCard, expectedProductTitle);
+        String actualProductTitle = goodsPage.getNameProductHeaderTitle();
+        Assert.assertEquals(actualProductTitle, expectedNameFirstProductCard);
 
     }
 
@@ -80,12 +80,12 @@ public class HomePageTest extends TestInit {
 
         openUrl(alloUrl);
 
-        Assert.assertTrue(homePage.displayCustomerButton());
+        Assert.assertTrue(homePage.customerButtonDisplay());
         homePage.clickCustomerButton();
 
-        Assert.assertTrue(homePage.displayDropDownMenu());
+        Assert.assertTrue(homePage.dropDownMenuDisplay());
 
-        Assert.assertTrue(homePage.displayDeliveryPaymentButton());
+        Assert.assertTrue(homePage.deliveryPaymentButtonDisplay());
         homePage.clickDeliveryPaymentButton();
 
         String actualTextDeliveryAndPaymentHeaderTitle = deliveryAndPaymentPage.getNameDeliveryAndPayment();

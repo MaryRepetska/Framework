@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class DeliveryAndPaymentPage extends BasePage {
+
     public DeliveryAndPaymentPage(WebDriver driver) {
         super(driver);
     }
