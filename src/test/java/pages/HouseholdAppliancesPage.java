@@ -13,7 +13,7 @@ public class HouseholdAppliancesPage extends BasePage {
     private final String FIRST_TITLE_ON_HOUSEHOLD_APPLIANCES_PAGE = "//h1[@class='v-catalog__title']";
 
     public WebElement expectedFirstTitleHouseholdAppliances() {
-        return visibilityofElementByXpath(FIRST_TITLE_ON_HOUSEHOLD_APPLIANCES_PAGE);
+        return visibilityOfElementByXpath(FIRST_TITLE_ON_HOUSEHOLD_APPLIANCES_PAGE);
     }
 
     public String getExpectedFirstTitleText() {

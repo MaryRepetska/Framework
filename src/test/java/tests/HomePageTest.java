@@ -1,14 +1,10 @@
 package tests;
 
 import basesClass.TestInit;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.HouseholdAppliancesPage;
-
-import static java.lang.Thread.sleep;
+import pages.*;
+import pages.SearchResultAirPodsPage;
 
 public class HomePageTest extends TestInit {
 
@@ -21,7 +17,7 @@ public class HomePageTest extends TestInit {
 
         openUrl(alloUrl);
 
-        Assert.assertTrue(homePage.displayCatalogButton());
+        Assert.assertTrue(homePage.catalogButtonDisplay());
 
     }
 
@@ -35,7 +31,7 @@ public class HomePageTest extends TestInit {
 
         homePage.clickCatalogButton();
 
-        Assert.assertTrue(homePage.displayHouseholdAppliancesButton());
+        Assert.assertTrue(homePage.householdAppliancesButtonDisplay());
 
         homePage.clickHouseholdAppliancesButton();
 
@@ -48,74 +44,57 @@ public class HomePageTest extends TestInit {
     }
 
     @Test
-    public void checkProductDetailsAfterSearch() throws InterruptedException {
+    public void verifyProductDetailsMatchAfterSearch() {
+
+        HomePage homePage = new HomePage(driver);
+        SearchResultAirPodsPage searchResultAirPodsPage = new SearchResultAirPodsPage(driver);
+        GoodsPage goodsPage = new GoodsPage(driver);
 
         openUrl(alloUrl);
 
-        WebElement alloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
-        Assert.assertTrue(alloLogo.isDisplayed(), "Логотип allo відображається!");
+        String airPods = "AirPods 3";
 
-        sleep(5000);
+        Assert.assertTrue(homePage.alloLogoDisplay());
 
-        WebElement searchInput = driver.findElement(By.xpath("//input[@ id='search-form__input']"));
-        searchInput.sendKeys("AirPods 3");
+        homePage.enterValueInSearchInput(airPods);
+        homePage.clickSearchButton();
 
-        WebElement searchButton = driver.findElement(By.xpath("//button[@class='search-form__submit-button']"));
-        searchButton.click();
+        String expectedNameFirstProductCard = searchResultAirPodsPage.getNameFirstAirPodsCard();
+        Assert.assertTrue(expectedNameFirstProductCard.contains("AirPods 3"));
 
-        sleep(5000);
+        searchResultAirPodsPage.clickFirstProductCardAirPods();
 
-        WebElement firstItemTitle = driver.findElement(By.xpath("(//a[@class='product-card__title' and contains(., 'AirPods 3')])[1]"));
-        String actual = firstItemTitle.getText();
-        Assert.assertTrue(actual.contains("AirPods 3"));
-
-        WebElement expectedProductName = driver.findElement(By.xpath("(//a[@class='product-card__title'])[1]"));
-        String expectedName = expectedProductName.getText();
-        firstItemTitle.click();
-
-        sleep(5000);
-
-        WebElement productTitleOnPage = driver.findElement(By.xpath("//h1[@class='p-view__header-title']"));
-        String actualProductName = productTitleOnPage.getText();
-        Assert.assertEquals(actualProductName, expectedName);
+        String actualProductTitle = goodsPage.getNameProductHeaderTitle();
+        Assert.assertEquals(actualProductTitle, expectedNameFirstProductCard);
 
     }
 
     @Test
-    public void checkPokupciamHeaderButton() throws InterruptedException {
+    public void verifyCustomerMenuNavigationToDeliveryAndPayment() {
+
+        HomePage homePage = new HomePage(driver);
+        DeliveryAndPaymentPage deliveryAndPaymentPage = new DeliveryAndPaymentPage(driver);
+
+        String headerTitle = "Доставка і оплата";
+        String howToOrder = "Як оформити замовлення?";
 
         openUrl(alloUrl);
 
-        WebElement PokupciamButton = driver.findElement(By.xpath("//div[@class='mh-button__wrap']"));
-        Assert.assertTrue(PokupciamButton.isDisplayed());
+        Assert.assertTrue(homePage.customerButtonDisplay());
+        homePage.clickCustomerButton();
 
-        sleep(5000);
+        Assert.assertTrue(homePage.dropDownMenuDisplay());
 
-        PokupciamButton.click();
+        Assert.assertTrue(homePage.deliveryPaymentButtonDisplay());
+        homePage.clickDeliveryPaymentButton();
 
-        sleep(5000);
+        String actualTextDeliveryAndPaymentHeaderTitle = deliveryAndPaymentPage.getNameDeliveryAndPayment();
+        Assert.assertTrue(actualTextDeliveryAndPaymentHeaderTitle.contains(headerTitle));
 
-        WebElement dropDownMenu = driver.findElement(By.xpath("//div[@class='mh-button__dropdown']"));
-        Assert.assertTrue(dropDownMenu.isDisplayed());
+        deliveryAndPaymentPage.displayHowToOrderTitle();
 
-        WebElement DostavkaiOplataButton = driver.findElement(By.xpath("(//a[@class='mh-button'])[5]"));
-        Assert.assertTrue(DostavkaiOplataButton.isDisplayed());
-        DostavkaiOplataButton.click();
-
-        WebElement oplataiDostavkaTitleElement = driver.findElement(By.xpath("//h2[@class='sp-page-title sp-h2 page-header']"));
-        String OplataiDostavkaTitleText = oplataiDostavkaTitleElement.getText();
-        Assert.assertTrue(OplataiDostavkaTitleText.contains("Доставка і оплата"));
-
-        WebElement yakOformytyZamovleniaTitle = driver.findElement(By.xpath("(//h3[@class='sub-block-header'])[1]"));
-        Assert.assertTrue(yakOformytyZamovleniaTitle.isDisplayed());
-
-        String checkyakOformytyZamovlenia = yakOformytyZamovleniaTitle.getText();
-        Assert.assertTrue(checkyakOformytyZamovlenia.contains("Як оформити замовлення?"));
-
+        String actualTextHowToOrderTitle = deliveryAndPaymentPage.getNameHowToOrderTitle();
+        Assert.assertTrue(actualTextHowToOrderTitle.contains(howToOrder));
     }
 
 }
-
-
-
-

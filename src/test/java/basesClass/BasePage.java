@@ -18,7 +18,7 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    public WebElement visibilityofElementByXpath(String locator) {
+    public WebElement visibilityOfElementByXpath(String locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
@@ -26,8 +26,8 @@ public class BasePage {
         element.click();
     }
 
-    public boolean displayElement(WebElement element){
-       return element.isDisplayed();
+    public boolean displayElement(WebElement element) {
+        return element.isDisplayed();
     }
 
 }
