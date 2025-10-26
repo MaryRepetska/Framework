@@ -1,5 +1,4 @@
 package tests;
-
 import basesClass.TestInit;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -14,7 +13,7 @@ public class HomePageTest extends TestInit {
     @Test
     public void checkCatalogButton() {
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
 
         openUrl(alloUrl);
 
@@ -25,8 +24,8 @@ public class HomePageTest extends TestInit {
     @Test
     public void shouldNavigateToHouseholdAppliancesPage() {
 
-        HomePage homePage = new HomePage(driver);
-        HouseholdAppliancesPage householdAppliancesPage = new HouseholdAppliancesPage(driver);
+        HomePage homePage = new HomePage(getDriver());
+        HouseholdAppliancesPage householdAppliancesPage = new HouseholdAppliancesPage(getDriver());
 
         openUrl(alloUrl);
 
@@ -47,9 +46,9 @@ public class HomePageTest extends TestInit {
     @Test
     public void verifyProductDetailsMatchAfterSearch() {
 
-        HomePage homePage = new HomePage(driver);
-        SearchResultAirPodsPage searchResultAirPodsPage = new SearchResultAirPodsPage(driver);
-        GoodsPage goodsPage = new GoodsPage(driver);
+        HomePage homePage = new HomePage(getDriver());
+        SearchResultAirPodsPage searchResultAirPodsPage = new SearchResultAirPodsPage(getDriver());
+        GoodsPage goodsPage = new GoodsPage(getDriver());
 
         openUrl(alloUrl);
 
@@ -73,8 +72,8 @@ public class HomePageTest extends TestInit {
     @Test
     public void verifyCustomerMenuNavigationToDeliveryAndPayment() {
 
-        HomePage homePage = new HomePage(driver);
-        DeliveryAndPaymentPage deliveryAndPaymentPage = new DeliveryAndPaymentPage(driver);
+        HomePage homePage = new HomePage(getDriver());
+        DeliveryAndPaymentPage deliveryAndPaymentPage = new DeliveryAndPaymentPage(getDriver());
 
         String headerTitle = "Доставка і оплата";
         String howToOrder = "Як оформити замовлення?";
@@ -101,8 +100,8 @@ public class HomePageTest extends TestInit {
     @Test
     public void checkResultSearchField() {
 
-        HomePage homePage = new HomePage(driver);
-        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(driver);
+        HomePage homePage = new HomePage(getDriver());
+        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(getDriver());
 
         String samsungTV = "Телевізор Samsung";
         int expectedSizeProducts = 60;
@@ -126,8 +125,8 @@ public class HomePageTest extends TestInit {
     @Test
     public void checkSamsungTVSearchCommentsCount() {
 
-        HomePage homepage = new HomePage(driver);
-        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(driver);
+        HomePage homepage = new HomePage(getDriver());
+        SearchResultSamsungTV searchResultSamsungTV = new SearchResultSamsungTV(getDriver());
 
         openUrl(alloUrl);
 
