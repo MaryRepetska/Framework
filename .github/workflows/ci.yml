@@ -3,9 +3,9 @@ name: Java CI with Maven
 # 🔹 Коли запускати pipeline
 on:
   push:       # коли є пуш у репозиторій
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:  # або при створенні pull request
-    branches: [ "main" ]
+    branches: [ "*" ]
   workflow_dispatch:  # дозволяє вручну запустити pipeline у GitHub Actions
 
 # 🔹 Основна джоба
